@@ -20,7 +20,7 @@ class TuringMachine(object):
             self.__final_states = set(final_states)
 
     def get_tape(self):
-        return str(self._tape)
+        return str(self.__tape)
 
     def step(self):
         current_head_symbol = self.__tape[self.__head_position]
@@ -40,3 +40,51 @@ class TuringMachine(object):
 
 class Tape(object):
 
+    blank = " "
+
+    def __init__(self,
+                 tape = ""):
+        self.__tape = dict((enumerate(tape)))
+
+    def __str__(self):
+        s = ""
+        min_index = min(self.__tape.keys())
+        max_index = max(self.__tape.keys())
+
+        for i in range(min_index, max_index):
+            s += self.__tape[i]
+
+        return s
+
+    def __getitem__(self, index):
+        if index in self.__tape:
+            return self.__tape[index]
+        else:
+            return Tape.blank
+
+    def __setitem__(self, key, value):
+        self.__tape[key] = value
+
+
+if __name__ == "__main__":
+
+    initial_state = "init",
+    accepting_states = ["final"],
+    transition_function = {("init", "0"): ("init", "1", "R"),
+                           ("init", "1"): ("init", "0", "R"),
+                           ("init", " "): ("final", " ", "N"),
+                           }
+    final_states = {"final"}
+
+    t = TuringMachine("010011 ",
+                      initial_state="init",
+                      final_states=final_states,
+                      transition_table=transition_function)
+
+    print("Input on Tape:\n" + t.get_tape())
+
+    while not t.final():
+        t.step()
+
+    print("Result of the Turing machine calculation:")
+    print(t.get_tape())
