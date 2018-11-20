@@ -1,5 +1,7 @@
-class TuringMachine(object):
+from backend.tables import *
 
+
+class TuringMachine(object):
     def __init__(self,
                  tape = "",
                  blank = " ",
@@ -82,13 +84,17 @@ if __name__ == "__main__":
 
     initial_state = ">"
 
+    tables = {
+        "division_table": division_table,
+        "equals_table": equals_table
+    }
 
     final_states = {"FIM"}
 
     t = TuringMachine(">***B**B",
                       initial_state=initial_state,
                       final_states=final_states,
-                      transition_table=transition_function)
+                      transition_table=tables["division_table"])
 
     print("Input on Tape:\n" + t.get_tape())
 

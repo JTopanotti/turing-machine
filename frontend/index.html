@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html ng-app="turingMachine">
+<head>
+	<meta charset="UTF-8" >
+	<title>Máquina de Turing</title>
+
+	<!-- bootstrap -->
+	<!--<link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">-->
+
+	<!-- Material designer icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- Angular Material requires Angular.js Libraries -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+	<!-- Angular Material Library -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+	<!-- Angular Material style sheet -->
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+
+	<!--  Declarações de libliotecas do Angular -->
+	<script type="text/javascript" src="lib/angular/angular.js"></script>
+	<script type="text/javascript" src="lib/angular/angular-messages.js"></script>
+	<script type="text/javascript" src="lib/angular/angular-route.js"></script>
+
+	<!-- Declarações das configurações externas -->
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="config/config.js"></script>
+	<script type="text/javascript" src="module-maquina-route.js"></script>
+
+	<!-- Declaração de services -->
+	<script type="text/javascript" src="views/services/machine-service.js"></script>
+
+
+	<!-- Declaração do módulo principal-->
+	<script type="text/javascript" src="views/machine/machine-controller.js"></script>
+
+
+
+
+</head>
+<body>
+<div layout="column" class="h-100">
+	<md-toolbar class="md-menu-toolbar">
+		<h2 class="md-toolbar-tools">Radar computação gráfica</h2>
+		<!--<md-menu-bar>-->
+			<!--<md-menu>-->
+				<!--<md-button ng-click="" ng-href="#/machine">-->
+					<!--Aviões-->
+					<!--<md-icon>airplanemode_active</md-icon>-->
+				<!--</md-button>-->
+				<!--<md-menu-content></md-menu-content>-->
+			<!--</md-menu>-->
+			<!--<md-menu>-->
+				<!--<md-button ng-click="" ng-href="#/gerenciarAviao">-->
+					<!--Gerenciar Posição Aviões-->
+				<!--</md-button>-->
+				<!--<md-menu-content></md-menu-content>-->
+			<!--</md-menu>-->
+			<!--<md-menu>-->
+				<!--<md-button ng-click="" ng-href="#/avioesproximos">-->
+					<!--Verificar Aviões proximos a base-->
+				<!--</md-button>-->
+				<!--<md-menu-content></md-menu-content>-->
+			<!--</md-menu>-->
+			<!--<md-menu>-->
+				<!--<md-button ng-click="" ng-href="#/distanciaentreavioes">-->
+					<!--Distancia entre aviões-->
+				<!--</md-button>-->
+				<!--<md-menu-content></md-menu-content>-->
+			<!--</md-menu>-->
+			<!--<md-menu>-->
+				<!--<md-button ng-click="" ng-href="#/rotacolisao">-->
+					<!--Rotas de colisão-->
+				<!--</md-button>-->
+				<!--<md-menu-content></md-menu-content>-->
+			<!--</md-menu>-->
+		<!--</md-menu-bar>-->
+	</md-toolbar>
+	<md-content md-scroll-y layout="column" flex class="main-background" style="display: block;">
+		<div layout="row">
+			<div flex layout-acd lign="center center" layout-margin>
+				<div ng-view=""></div>
+			</div>
+			<div flex>
+				<ui-canvas width="600" height="600"></ui-canvas>
+			</div>
+		</div>
+	</md-content>
+</div>
+</body>
+</html>
