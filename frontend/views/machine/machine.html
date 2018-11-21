@@ -1,1 +1,34 @@
-<h3>Machine Here {{ machine }}</h3>
+<div layout="row" flex>
+    <form name="form">
+        <md-input-container flex>
+        <label>Operando 1</label>
+        <input required type="number" step="any" name="operand1" id="operand1"
+               ng-model="operand1" min="1" />
+        <div ng-messages="form.operand1.$error">
+            <div ng-message="required">Precisa informar o operando</div>
+        </div>
+    </md-input-container>
+
+    <md-select ng-model="operation" placeholder="Operação">
+        <md-option value="division" ng-selected="true">Divisão</md-option>
+        <md-option value="equals">Igualdade</md-option>
+    </md-select>
+
+    <md-input-container flex>
+        <label>Operando 2</label>
+        <input required type="number" step="any" name="operand2" id="operand2"
+               ng-model="operand2" min="1" />
+        <div ng-messages="form.operand2.$error">
+            <div ng-message="required">Precisa informar o operando</div>
+        </div>
+    </md-input-container>
+    <md-button class="md-raised md-primary" ng-click="execute()"
+               ng-disabled="!form.$valid"
+               align="center center">Executar máquina</md-button>
+    </form>
+
+</div>
+<div layout="row" flex class="centered">
+    <h1 id="tape">No Result</h1>
+</div>
+

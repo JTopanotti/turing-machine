@@ -12,6 +12,7 @@ class TuringMachine(object):
         self.__head_position = 0
         self.__blank_symbol = blank
         self.__current_state = initial_state
+        self.operation_list = []
         if transition_table == None:
             self.__transition_table = {}
         else:
@@ -26,22 +27,33 @@ class TuringMachine(object):
 
     def step(self):
         current_head_symbol = self.__tape[self.__head_position]
+        current_operation = {}
 
         if self.__head_position == self.__tape.length():
             self.__tape[self.__head_position] = "B"
 
         x = (self.__current_state, current_head_symbol)
         if x in self.__transition_table:
+
             y = self.__transition_table[x]
+            self.__current_state, current_operation["state"] = y[0], y[0]
+
+            replaced_symbol = y[1]
             if y[1] == "$":
-                self.__tape[self.__head_position] = current_head_symbol
-            else:
-                self.__tape[self.__head_position] = y[1]
+                replaced_symbol = current_head_symbol
+            self.__tape[self.__head_position], current_operation["symbol"] = \
+                replaced_symbol, replaced_symbol
+
             if y[2] == "D":
                 self.__head_position += 1
+                current_operation["position"] = 1
             elif y[2] == "E":
                 self.__head_position -= 1
-            self.__current_state = y[0]
+                current_operation["position"] = -1
+            else:
+                current_operation["position"] = 0
+
+            self.operation_list.append(current_operation)
 
     def final(self):
         return self.__current_state in self.__final_states
@@ -94,7 +106,7 @@ if __name__ == "__main__":
     t = TuringMachine(">***B**B",
                       initial_state=initial_state,
                       final_states=final_states,
-                      transition_table=tables["division_table"])
+                      transition_table=tables["equals_table"])
 
     print("Input on Tape:\n" + t.get_tape())
 
@@ -103,3 +115,4 @@ if __name__ == "__main__":
 
     print("Result of the Turing machine calculation:")
     print(t.get_tape())
+    print(t.operation_list)
