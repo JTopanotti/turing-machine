@@ -1,34 +1,47 @@
-<div layout="row" flex>
-    <form name="form">
-        <md-input-container flex>
-        <label>Operando 1</label>
-        <input required type="number" step="any" name="operand1" id="operand1"
-               ng-model="operand1" min="1" />
-        <div ng-messages="form.operand1.$error">
-            <div ng-message="required">Precisa informar o operando</div>
-        </div>
-    </md-input-container>
+<div layout="column" class="md-inline-form" layout-align="center center">
 
-    <md-select ng-model="operation" placeholder="Operação">
-        <md-option value="division" ng-selected="true">Divisão</md-option>
-        <md-option value="equals">Igualdade</md-option>
-    </md-select>
+    <md-content layout-padding style="display: fex !important">
+        <form name="form">
+            <div layout-gt-sm="row" style="height:70px !important">
+                <md-input-container flex="30">
+                    <label>Velocidade (ms)</label>
+                    <input required type="number" name="velocity" id="velocity"
+                           ng-model="velocity" min="1"/>
+                    <div ng-messages="form.velocity.$error">
+                        <div ng-message="required">É necessário informar a velocidade</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Dados de entrada</label>
+                    <input required type="text" step="any" name="input" id="input"
+                           ng-model="input" min="1" placeholder=">*** **"/>
+                    <div ng-messages="form.input.$error">
+                        <div ng-message="required">É necessário informar os dados de entrada</div>
+                    </div>
+                </md-input-container>
 
-    <md-input-container flex>
-        <label>Operando 2</label>
-        <input required type="number" step="any" name="operand2" id="operand2"
-               ng-model="operand2" min="1" />
-        <div ng-messages="form.operand2.$error">
-            <div ng-message="required">Precisa informar o operando</div>
-        </div>
-    </md-input-container>
-    <md-button class="md-raised md-primary" ng-click="execute()"
-               ng-disabled="!form.$valid"
-               align="center center">Executar máquina</md-button>
-    </form>
+                <md-select ng-model="operation" placeholder="Operação" flex="20">
+                    <md-option value="division" ng-selected="true">Divisão</md-option>
+                    <md-option value="equals">Igualdade</md-option>
+                </md-select>
+            </div>
+        </form>
+    </md-content>
 
 </div>
-<div layout="row" flex class="centered">
+<div layout="row" flex layout-align="center center">
+    <md-button class="md-raised md-primary" ng-click="execute()" flex="20"
+               ng-disabled="!form.$valid" style="height: 10px !important"
+               align="center center">
+        Executar máquina
+    </md-button>
+    <md-button class="md-raised md-warn" ng-click="reset()" flex="20"
+               style="height: 10px !important"
+               align="center center">
+        Resetar máquina
+    </md-button>
+</div>
+<div layout="row" flex layout-align="center center">
     <h1 id="tape">No Result</h1>
 </div>
 

@@ -115,4 +115,3 @@ if __name__ == "__main__":
 
     print("Result of the Turing machine calculation:")
     print(t.get_tape())
-    print(t.operation_list)

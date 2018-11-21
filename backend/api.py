@@ -21,19 +21,9 @@ def hello():
 @app.route("/execute")
 def execute():
     operation = request.args.get("operation")
-    operand1 = int(request.args.get("operand1"))
-    operand2 = int(request.args.get("operand2"))
+    input = request.args.get("input").replace(" ", "B") + "B"
 
-    operand1_string, operand2_string = "", ""
-
-    for i in range(0, operand1):
-        operand1_string += "*"
-    for i in range(0, operand2):
-        operand2_string += "*"
-
-    input_tape = ">" + operand1_string + "B" + operand2_string + "B"
-
-    t = TuringMachine(input_tape, initial_state=">",
+    t = TuringMachine(input, initial_state=">",
                       final_states=["FIM"],
                       transition_table=tables[operation])
 
@@ -41,11 +31,9 @@ def execute():
         t.step()
 
     data = {
-        "input_tape": input_tape,
+        "input_tape": input,
         "result_tape": t.get_tape(),
         "operation_list": t.operation_list
     }
-
-    print(data)
 
     return jsonify(data)
